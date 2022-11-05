@@ -13,11 +13,10 @@
       crossorigin="anonymous"
     ></script>
     <meta charset="UTF-8" />
-    <title>Főoldal</title>
   </head>
   <body>
     <div th:replace="fragments/header :: header"></div>
-    <h1>Homepagef</h1>
+    <div th:replace="fragments/pages :: ${page}"></div>
     <div th:replace="fragments/footer :: footer"></div>
   </body>
 </html>
