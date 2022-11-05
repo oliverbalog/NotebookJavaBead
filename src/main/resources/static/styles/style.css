@@ -1,0 +1,26 @@
+.navbar-brand {
+    display: flex !important;
+    width:10em !important;
+    align-content: center !important;
+    justify-content: center !important;
+    background: #e6e6e6 !important;
+    box-shadow: 0 0 5px -2px #e6e6e6 !important;
+    border-radius: 5px !important;
+}
+
+.page{
+    min-height: 50vh;
+    width: 80%;
+    margin: 2em auto;
+}
+
+p {
+    font-size: 1.2em;
+    letter-spacing: 3px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.hp-1-img{
+    width: 100%;
+}
