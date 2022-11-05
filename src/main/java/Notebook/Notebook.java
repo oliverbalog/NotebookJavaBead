@@ -1,13 +1,11 @@
-package com.example.notebookjavabead;
+package Notebook;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NotebookJavaBeadApplication {
-
+public class Notebook {
     public static void main(String[] args) {
-        SpringApplication.run(NotebookJavaBeadApplication.class, args);
+        SpringApplication.run(Notebook.class,args);
     }
-
 }
