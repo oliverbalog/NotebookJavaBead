@@ -11,10 +11,7 @@ public class Role {
     private Integer Id;
     @Column(nullable = false, unique = true)
     private String Name;
-    @OneToMany
-    @JoinTable(
-            name = "user_role",
-            joinColumns = {@JoinColumn(name = "role_id")})
+    @ManyToMany(mappedBy = "Roles")
     private List<User> users;
 
     public Integer getId() {

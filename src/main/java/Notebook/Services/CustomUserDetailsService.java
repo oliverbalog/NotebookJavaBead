@@ -15,7 +15,7 @@ import java.util.Collection;
 
 @Service
 @Transactional
-public class CustomUserDetailsService extends UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
     @Override

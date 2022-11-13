@@ -11,11 +11,6 @@ public class PagesController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("users")
-    public String GetUsers(Model model){
-        model.addAttribute("users",userRepository.findAll());
-        return "teszt";
-    }
 
     @GetMapping()
     public String homePage(Model model){

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,19 +14,19 @@ public class User {
     private String Email;
     private String Password;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name="user_role",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private Role Role;
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private List<Role> Roles;
 
-    public Role getRole() {
-        return Role;
+    public List<Role> getRoles() {
+        return Roles;
     }
 
-    public void setRole(Role role) {
-        this.Role = Role;
+    public void setRoles(List<Role> roles) {
+        this.Roles = roles;
     }
 
     public int getId() {
