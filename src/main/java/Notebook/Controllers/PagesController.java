@@ -11,10 +11,10 @@ public class PagesController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("users")
-    public String GetUsers(Model model){
-        model.addAttribute("users",userRepository.findAll());
-        return "teszt";
+    @GetMapping("/admin/")
+    public String adminPage(Model model){
+        model.addAttribute("paeg","home");
+        return "layout";
     }
 
     @GetMapping()
