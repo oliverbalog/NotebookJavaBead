@@ -11,6 +11,11 @@ public class PagesController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping("/admin/")
+    public String adminPage(Model model){
+        model.addAttribute("paeg","home");
+        return "layout";
+    }
 
     @GetMapping()
     public String homePage(Model model){

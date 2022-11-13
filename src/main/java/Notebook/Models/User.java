@@ -1,5 +1,7 @@
 package Notebook.Models;
 
+import org.springframework.web.bind.annotation.Mapping;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,11 +10,11 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
-    private String Firstname;
-    private String Lastname;
-    private String Email;
-    private String Password;
+    private int id;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String password;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
@@ -30,42 +32,42 @@ public class User {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getFirstname() {
-        return Firstname;
+        return firstname;
     }
 
     public void setFirstname(String firstname) {
-        Firstname = firstname;
+        this.firstname = firstname;
     }
 
     public String getLastname() {
-        return Lastname;
+        return lastname;
     }
 
     public void setLastname(String lastname) {
-        Lastname = lastname;
+        this.lastname = lastname;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 }
