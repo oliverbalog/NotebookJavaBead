@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
+
 @Controller
 public class PagesController {
     @Autowired
@@ -13,7 +15,7 @@ public class PagesController {
 
     @GetMapping("/admin/")
     public String adminPage(Model model){
-        model.addAttribute("paeg","home");
+        model.addAttribute("page","admin");
         return "layout";
     }
 
@@ -28,5 +30,16 @@ public class PagesController {
         model.addAttribute("page","about");
         return "layout";
     }
-    
+
+    @GetMapping("/login")
+    public String loginPage(Model model, Principal principal) {
+
+        if (principal != null) {
+            return homePage(model);
+        }
+
+        model.addAttribute("page","login");
+
+        return "layout";
+    }
 }

@@ -1,6 +1,7 @@
 <div xmlns:th="http://www.thymeleaf.org"
-     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <div>
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+<div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
     <a class="navbar-brand" href="../layout.html" th:href="@{/}">ReNew kft.</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -11,7 +12,7 @@
         <div class="d-flex" style="float:left;">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="../layout.html" th:href="@{/}">Home </a>
+                <a class="nav-link" href="../layout.html" th:href="@{/}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../layout.html" th:href="@{/about}">About</a>
@@ -35,21 +36,26 @@
         <div class="d-flex" style="float:right; margin-left: auto;">
             <ul class="navbar-nav">
                 <li sec:authorize="isAnonymous()" class="nav-item">
-                    <a href="/login">Login</a>
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
                 <li sec:authorize="isAnonymous()" class="nav-item">
-                    <a href="">Registration</a>
-                </li>
-                <li sec:autorize="isAuthenticated()" class="nav-item">
-                    <a href="/logout">Logout</a>
+                    <a class="nav-link"  href="">Registration</a>
                 </li>
                 <li sec:autorize="hasRole('admin')" class="nav-item">
-                    <a href="/admin/">Admin</a>
+                    <a class="nav-link"  href="/admin/">Admin</a>
                 </li>
                 <div sec:authorize="isAuthenticated()">
-                    <span>Üdvözöljük <span sec:authentication="principal.username">.</span>!</span>
+                    <span>Üdvözöljük <span sec:authentication="principal.username"/>!</span>
                 </div>
+                <li sec:autorize="isAuthenticated()" class="nav-item">
+<!--                TODO fix this-->
+                    <!--                    <a href="/logout">Logout</a>-->
+                    <form  th:action="@{/logout}" method="post">
+                        <input class="nav-link" type="submit" value="Logout"/>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
+</div>

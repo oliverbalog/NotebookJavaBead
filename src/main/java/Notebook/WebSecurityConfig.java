@@ -9,12 +9,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     private UserDetailsService customUserDetailsService;
 
@@ -25,18 +24,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/resources/**", "/").permitAll()
-                .antMatchers("/**", "/").permitAll()
-                .antMatchers("/admin/**").hasRole("admin")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().defaultSuccessUrl("/").permitAll()
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").permitAll()
-                .and()
-                .exceptionHandling();
+//        http.authorizeRequests()
+//                .antMatchers("/resources/**", "/").permitAll()
+//                .antMatchers("/**", "/").permitAll()
+//                .antMatchers("/admin/**").hasRole("admin")
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin().defaultSuccessUrl("/").permitAll()
+//                .and()
+//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessUrl("/").permitAll()
+//                .and()
+//                .exceptionHandling();
+
+        http
+            .authorizeHttpRequests((requests) -> requests
+                    .antMatchers("/resources/**", "/").permitAll()
+                    .antMatchers("/**", "/").permitAll()
+                    .antMatchers("/admin/**").hasRole("admin")
+                    .anyRequest().authenticated()
+            )
+            .formLogin((form) -> form
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/")
+                    .permitAll()
+            )
+            .logout((logout) -> logout
+                    .logoutSuccessUrl("/")
+                    .permitAll()
+            )
+            .exceptionHandling();
 
     }
 }
