@@ -1,0 +1,39 @@
+<div th:fragment="machinespage">
+
+    <table class="table table-striped gep-table" style="border-radius: 15px !important;">
+        <thead>
+            <tr>
+                <th scope="col">Gyártó</th>
+                <th scope="col">Típus</th>
+                <th scope="col">Kijelző méret</th>
+                <th scope="col">Memória</th>
+                <th scope="col">Tárhely</th>
+                <th scope="col">Videóvezérlő</th>
+                <th scope="col">Processzor</th>
+                <th scope="col">Operációs rendszer</th>
+                <th scope="col">Ár</th>
+                <th scope="col">Db</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="gep : ${notebooks}">
+                <td th:text="${gep.gyarto}"></td>
+                <td th:text="${gep.tipus}"></td>
+                <td th:text="${gep.kijelzo}"></td>
+                <td th:text="${gep.memoria}"></td>
+                <td th:text="${gep.merevlemez}"></td>
+                <td th:text="${gep.videovezerlo}"></td>
+                <td>
+                    <span th:text="${gep.processzor.gyarto}"></span>
+                    <span>-</span>
+                    <span th:text="${gep.processzor.tipus}"></span>
+                </td>
+                <td th:text="${gep.oprendszer.nev}"></td>
+                <td>
+                    <span th:text="${gep.ar}"></span> Ft
+                </td>
+                <td th:text="${gep.db}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,5 +1,7 @@
 package Notebook.Controllers;
 
+import Notebook.Models.Gep;
+import Notebook.Repositories.GepRepository;
 import Notebook.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,22 @@ import java.security.Principal;
 public class PagesController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private GepRepository gepRepository;
+
+    @GetMapping("/machines")
+    public String machinesPage(Model model){
+        model.addAttribute("notebooks",gepRepository.findAll());
+        model.addAttribute("page","machines");
+
+        return "layout";
+    }
+
+    @GetMapping("/users")
+    public String tesztPage(Model model){
+        model.addAttribute("users", userRepository.findAll());
+        return "teszt";
+    }
 
     @GetMapping("/admin/")
     public String adminPage(Model model){

@@ -9,22 +9,22 @@ import javax.persistence.Id;
 public class Oprendszer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
-    private String Nev;
+    private Integer id;
+    private String nev;
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNev() {
-        return Nev;
+        return nev;
     }
 
     public void setNev(String nev) {
-        Nev = nev;
+        this.nev = nev;
     }
 }

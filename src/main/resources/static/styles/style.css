@@ -24,3 +24,24 @@ p {
 .hp-1-img{
     width: 100%;
 }
+
+.gep-table{
+    border: 2px solid black !important;
+    padding: 3em !important;
+    margin: 3em !important;
+    border-radius: 5px !important;
+    border-spacing: 15px !important;
+}
+
+.gep-table > td, th{
+    padding: 15px;
+}
+
+.gep-table > th {
+    background: white !important;
+}
+
+th, td{
+    border: .5px solid lightgrey !important;
+    margin: .5em !important;
+}

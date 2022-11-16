@@ -18,11 +18,11 @@
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
-        <td th:text="${user.Id}"></td>
-        <td th:text="${user.Firstname}"></td>
-        <td th:text="${user.Lastname}"></td>
-        <td th:text="${user.Email}"></td>
-        <td th:text="${user.Password}"></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.firstname}"></td>
+        <td th:text="${user.lastname}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.password}"></td>
         <td>
             <table>
                 <thead>
@@ -32,17 +32,11 @@
                         <th>User ID</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td th:text="${user.Role.Id}"></td>
-                        <td th:text="${user.Role.Name}"></td>
-                    </tr>
-                </tbody>
             </table>
         </td>
         <td>
-            <a th:href="@{'/edit/'+${user.Id}}">Edit</a>&nbsp;&nbsp;&nbsp;
-            <a th:href="@{'/delete/'+${user.Id}}">Delete</a>
+            <a th:href="@{'/edit/'+${user.id}}">Edit</a>&nbsp;&nbsp;&nbsp;
+            <a th:href="@{'/delete/'+${user.id}}">Delete</a>
         </td>
     </tr>
     </tbody>

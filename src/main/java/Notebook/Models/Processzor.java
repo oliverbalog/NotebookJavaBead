@@ -9,31 +9,31 @@ import javax.persistence.Id;
 public class Processzor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
-    private String Gyarto;
-    private String Tipus;
+    private Integer id;
+    private String gyarto;
+    private String tipus;
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getGyarto() {
-        return Gyarto;
+        return gyarto;
     }
 
     public void setGyarto(String gyarto) {
-        Gyarto = gyarto;
+        this.gyarto = gyarto;
     }
 
     public String getTipus() {
-        return Tipus;
+        return tipus;
     }
 
     public void setTipus(String tipus) {
-        Tipus = tipus;
+        this.tipus = tipus;
     }
 }
