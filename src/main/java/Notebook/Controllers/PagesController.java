@@ -3,10 +3,13 @@ package Notebook.Controllers;
 import Notebook.Models.Gep;
 import Notebook.Repositories.GepRepository;
 import Notebook.Repositories.UserRepository;
+import Notebook.ViewModels.ContactViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 
@@ -20,6 +23,14 @@ public class PagesController {
     @GetMapping("/contact")
     public String contactPage(Model model){
         model.addAttribute("page","contact");
+        model.addAttribute("contact", new ContactViewModel());
+
+        return "layout";
+    }
+    @PostMapping("/contact")
+    public String contactSubmit(@ModelAttribute ContactViewModel contact, Model model){
+        model.addAttribute("contactResult", contact);
+        model.addAttribute("contactSent", true);
 
         return "layout";
     }
