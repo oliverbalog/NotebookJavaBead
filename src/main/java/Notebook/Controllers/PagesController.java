@@ -17,6 +17,13 @@ public class PagesController {
     @Autowired
     private GepRepository gepRepository;
 
+    @GetMapping("/contact")
+    public String contactPage(Model model){
+        model.addAttribute("page","contact");
+
+        return "layout";
+    }
+
     @GetMapping("/machines")
     public String machinesPage(Model model){
         model.addAttribute("notebooks",gepRepository.findAll());
@@ -31,8 +38,9 @@ public class PagesController {
         return "teszt";
     }
 
-    @GetMapping("/admin/")
-    public String adminPage(Model model){
+    @GetMapping("/admin")
+    public String adminPage(Principal principal, Model model){
+
         model.addAttribute("page","admin");
         return "layout";
     }

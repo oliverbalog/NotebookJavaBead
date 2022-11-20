@@ -1,6 +1,3 @@
-<div xmlns:th="http://www.thymeleaf.org"
-     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-></div>
 <div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
     <a class="navbar-brand" href="../layout.html" th:href="@{/}">ReNew kft.</a>
@@ -20,20 +17,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="../layout.html" th:href="@{/machines}">Notebooks</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" href="../layout.html" th:href="@{/contact}">Contact</a>
             </li>
         </ul>
         </div>
         <div class="d-flex" style="float:right; margin-left: auto;">
+            <div xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+                <div>
             <ul class="navbar-nav">
                 <li sec:authorize="isAnonymous()" class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
@@ -41,13 +32,16 @@
                 <li sec:authorize="isAnonymous()" class="nav-item">
                     <a class="nav-link"  href="">Registration</a>
                 </li>
-                <li sec:autorize="hasRole('admin')" class="nav-item">
+                <li sec:authorize="hasAuthority('USER')" class="nav-item">
+                    <a class="nav-link"  href="/admin/">User</a>
+                </li>
+                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                     <a class="nav-link"  href="/admin/">Admin</a>
                 </li>
-                <div sec:authorize="isAuthenticated()">
+                <div class="mx-2 my-auto" sec:authorize="isAuthenticated()">
                     <span>Üdvözöljük <span sec:authentication="principal.username"/>!</span>
                 </div>
-                <li sec:autorize="isAuthenticated()" class="nav-item">
+                <li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item">
 <!--                TODO fix this-->
                     <!--                    <a href="/logout">Logout</a>-->
                     <form  th:action="@{/logout}" method="post">
@@ -56,6 +50,6 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div >
 </nav>
 </div>
