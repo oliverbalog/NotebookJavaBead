@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost
--- Létrehozás ideje: 2022. Nov 13. 15:11
+-- Létrehozás ideje: 2022. Nov 21. 21:20
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.1.6
 
@@ -20,6 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `notebook`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(25) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- A tábla adatainak kiíratása `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `email`, `name`, `address`, `message`, `date`) VALUES
+(1, 'asperant8@gmail.com', 'Balog Olivér', 'Ceglédi út', 'afdef', '2022-11-21 19:19:57'),
+(2, 'asperant8@gmail.com', 'Balog Olivér', 'Ceglédi út', 'afdef', '2022-11-21 19:20:27'),
+(3, 'asperant8@gmail.coms', 'Balog Olivér', 'Ceglédi út', 'efwqwefqwf', '2022-11-21 19:21:22'),
+(4, 'asperant8@gmail.com', 'Balog Olivér', 'Ceglédi út', 'r2r23r\r\n', '2022-11-21 20:14:27'),
+(5, 'asperant8@gmail.com', 'Balog Olivér', 'Ceglédi út', 'qwefweqf', '2022-11-21 20:18:10'),
+(6, 'asperant8@gmail.com', 'Balog Olivér', 'Ceglédi út', 'wefqwfwef', '2022-11-21 20:22:22'),
+(7, 'a20i86@hallgato.uni-neumann.hu', 'Olivér Balog', 'Ceglédi út', 'weqfwefq', '2022-11-21 20:22:31'),
+(8, 'asperant8@gmail.com', 'Balog Olivér', 'Ceglédi út', 'sdfasdf', '2022-11-21 20:23:50'),
+(9, 'asd@asd.asd', 'admin admin', 'Ceglédi út', 'wefqgweg', '2022-11-21 21:06:44');
 
 -- --------------------------------------------------------
 
@@ -401,9 +431,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(3, 'admin'),
-(1, 'guest'),
-(2, 'user');
+(1, 'ADMIN'),
+(2, 'USER');
 
 -- --------------------------------------------------------
 
@@ -413,6 +442,7 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 
 CREATE TABLE `users` (
   `id` int(10) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -424,8 +454,9 @@ CREATE TABLE `users` (
 -- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `role_id`) VALUES
-(1, 'asd', 'asd', 'asd', '$2a$10$smSFcM6WkBwQSXINSO6NtOmei1G/1vCZItHrWP2VOR03PLLr0KIzK', 1);
+INSERT INTO `users` (`id`, `username`, `firstname`, `lastname`, `email`, `password`, `role_id`) VALUES
+(1, 'asd', 'asd', 'asd', 'asd', '$2a$10$smSFcM6WkBwQSXINSO6NtOmei1G/1vCZItHrWP2VOR03PLLr0KIzK', 1),
+(2, 'admin', 'admin', 'admin', 'asd@asd.asd', '$2a$10$aKLL2PKofbAAhSwLpSNFeeRQWOmH85mbF69QBpxJyw9CauY/VZe3W', 3);
 
 -- --------------------------------------------------------
 
@@ -443,11 +474,18 @@ CREATE TABLE `user_role` (
 --
 
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
-(1, 1);
+(2, 1),
+(1, 2);
 
 --
 -- Indexek a kiírt táblákhoz
 --
+
+--
+-- A tábla indexei `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- A tábla indexei `gep`
@@ -492,6 +530,12 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT a táblához `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT a táblához `gep`
 --
 ALTER TABLE `gep`
@@ -507,7 +551,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Megkötések a kiírt táblákhoz
