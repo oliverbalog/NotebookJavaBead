@@ -28,7 +28,7 @@ p {
 .gep-table{
     border: 2px solid black !important;
     padding: 3em !important;
-    margin: 3em !important;
+    margin: auto !important;
     border-radius: 5px !important;
     border-spacing: 15px !important;
 }

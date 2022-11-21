@@ -1,0 +1,8 @@
+<div th:fragment="contactSent">
+  <h2 th:if="${error == ''}">Dear <span th:text="${contact.Name}"/> The message has been successfully sent. We will contact you soon!</h2>
+  <div th:if="${error}">
+  <div th:if="${error != ''}" class="alert alert-danger" role="alert">
+    <span th:text="${error}"/>
+  </div>
+  </div>
+</div>
