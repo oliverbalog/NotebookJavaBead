@@ -6,8 +6,10 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <div class="d-flex" style="float:left;">
+        <div class="d-flex flew-row" style="float:left;">
         <ul class="navbar-nav">
+            <div xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+                <div>
             <li class="nav-item active">
                 <a class="nav-link" href="../layout.html" th:href="@{/}">Home</a>
             </li>
@@ -19,6 +21,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../layout.html" th:href="@{/contact}">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../layout.html" th:href="@{/contacts}">Contacts list</a>
             </li>
         </ul>
         </div>
