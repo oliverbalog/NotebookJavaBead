@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
-import java.util.Date;
+import java.util.*;
 
 @Controller
 public class PagesController {
@@ -24,7 +24,28 @@ public class PagesController {
     @Autowired
     private ContactRepository contactRepository;
 
+    @GetMapping("/contacts")
+    public String contactsListPage(Model model)
+    {
 
+        var contacts = contactRepository.findAll();
+        List<Contact> contactsList = new ArrayList<Contact>();
+        contacts.forEach(x->{
+            try{
+                var u = userRepository.findByEmail(x.getEmail()).get();
+            }
+            catch (NoSuchElementException e){
+                x.setName("Vendég");
+            }
+            contactsList.add(x);
+        });
+        contactsList.sort(Comparator.comparing(o -> o.getDate(), Comparator.reverseOrder()));
+
+        model.addAttribute("page","contacts");
+     model.addAttribute("contacts",contactsList);
+
+     return "layout";
+    }
 
     @GetMapping("/contact")
     public String contactPage(Model model){

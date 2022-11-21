@@ -1,0 +1,25 @@
+<div th:fragment="contactspage">
+
+  <table class="table table-striped gep-table" style="border-radius: 15px !important;">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Message</th>
+      <th scope="col">Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contact : ${contacts}">
+      <td th:text="${contact.Id}"></td>
+      <td th:text="${contact.Name}"></td>
+      <td th:text="${contact.Email}"></td>
+      <td th:text="${contact.Address}"></td>
+      <td th:text="${contact.Message}"></td>
+      <td th:text="${contact.Date}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
