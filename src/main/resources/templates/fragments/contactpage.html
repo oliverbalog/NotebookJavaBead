@@ -2,26 +2,26 @@
     <h2>
         Contact Us
     </h2>
-    <div xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-        <div>
     <form action="#" th:action="@{/contact}" th:object="${contact}" method="post">
+        <div xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+            <div>
         <div class="form-row">
                 <div sec:authorize="isAnonymous()" class="form-group col-md-6 mt-2">
                     <label for="email">Email</label>
-                    <input th:field="" type="email" class="form-control" name="email" id="email" placeholder="Email">
+                    <input required minlength="5" th:field="*{Email}" type="email" class="form-control" name="email" id="email" placeholder="Email">
                 </div>
             <div sec:authorize="isAnonymous()" class="form-group col-md-6 mt-2">
                 <label for="name">Name</label>
-                <input th:field="*{Name}" type="name" class="form-control" id="name" placeholder="Name">
+                <input required minlength="2" th:field="*{Name}" type="name" class="form-control" name="name" id="name" placeholder="Name">
             </div>
         </div>
         <div class="form-group mt-2">
             <label for="address">Address</label>
-            <input th:field="*{Address}" type="text" class="form-control" id="address" placeholder="1234 Main St">
+            <input required minlength="5" th:field="*{Address}" type="text" name="address" class="form-control" id="address" placeholder="1234 Main St">
         </div>
         <div class="form-group mt-2">
             <label for="message">Message to send</label>
-            <textarea th:field="*{Message}" class="form-control" id="message" rows="3"></textarea>
+            <textarea required minlength="5" th:field="*{Message}" class="form-control" name="message" id="message" rows="3"></textarea>
         </div>
         <button type="submit" class="btn btn-primary mx-3">Send message</button>
     </form>

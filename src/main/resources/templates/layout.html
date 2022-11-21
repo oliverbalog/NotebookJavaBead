@@ -19,6 +19,7 @@
   <body>
     <div th:replace="fragments/header :: header"></div>
     <div class="page">
+      <div th:replace="fragments/components :: ${component}"></div>
       <div th:replace="fragments/pages :: ${page}"></div>
     </div>
     <div th:replace="fragments/footer :: footer"></div>
