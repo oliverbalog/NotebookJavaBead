@@ -1,4 +1,3 @@
-<div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
     <a class="navbar-brand" href="../layout.html" th:href="@{/}">ReNew kft.</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -8,8 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <div class="d-flex flew-row" style="float:left;">
         <ul class="navbar-nav">
-            <div xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-                <div>
+            <div xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"></div>
             <li class="nav-item active">
                 <a class="nav-link" href="../layout.html" th:href="@{/}">Home</a>
             </li>
@@ -29,13 +27,13 @@
         </div>
         <div class="d-flex" style="float:right; margin-left: auto;">
             <div xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-                <div>
+                </div>
             <ul class="navbar-nav">
                 <li sec:authorize="isAnonymous()" class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
                 <li sec:authorize="isAnonymous()" class="nav-item">
-                    <a class="nav-link"  href="">Registration</a>
+                    <a class="nav-link"  href="/register">Registration</a>
                 </li>
                 <li sec:authorize="hasAuthority('USER')" class="nav-item">
                     <a class="nav-link"  href="/admin/">User</a>
@@ -55,6 +53,5 @@
                 </li>
             </ul>
         </div>
-    </div >
+    </div>
 </nav>
-</div>
