@@ -1,5 +1,6 @@
 package Notebook.Controllers;
 
+import Notebook.Models.UserDto;
 import Notebook.Repositories.ContactRepository;
 import Notebook.Repositories.GepRepository;
 import Notebook.Repositories.UserRepository;
@@ -42,9 +43,9 @@ public class PagesController {
         contactsList.sort(Comparator.comparing(o -> o.getDate(), Comparator.reverseOrder()));
 
         model.addAttribute("page","contacts");
-     model.addAttribute("contacts",contactsList);
+        model.addAttribute("contacts",contactsList);
 
-     return "layout";
+        return "layout";
     }
 
     @GetMapping("/contact")
@@ -134,6 +135,19 @@ public class PagesController {
         }
 
         model.addAttribute("page","login");
+
+        return "layout";
+    }
+
+    @GetMapping("/register")
+    public String registerPage(Model model, Principal principal) {
+
+        if (principal != null) {
+            return homePage(model);
+        }
+
+        model.addAttribute("user", new UserDto());
+        model.addAttribute("page","register");
 
         return "layout";
     }

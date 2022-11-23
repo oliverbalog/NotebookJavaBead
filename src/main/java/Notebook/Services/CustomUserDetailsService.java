@@ -1,6 +1,7 @@
 package Notebook.Services;
 
 import Notebook.Models.User;
+import Notebook.Models.UserDto;
 import Notebook.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,13 +10,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.Collection;
 
 @Service
 @Transactional
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService, RegisterUserService {
     @Autowired
     private UserRepository userRepository;
 
@@ -23,8 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Email " + email + " not found"));
 
-
-// Egy új User-t (Security) hoz létre.
+        // Egy új User-t (Security) hoz létre.
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 getAuthorities(user));
     }
@@ -34,8 +33,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByUsername(userName)
                 .orElseThrow(() -> new UsernameNotFoundException("Username " + userName + " not found"));
 
-    System.out.println(getAuthorities(user));
-// Egy új User-t (Security) hoz létre.
+        System.out.println(getAuthorities(user));
+
+        // Egy új User-t (Security) hoz létre.
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 getAuthorities(user));
     }
@@ -45,4 +45,30 @@ public class CustomUserDetailsService implements UserDetailsService {
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
         return authorities;
     }
+
+    @Override
+    public User registerNewUserAccount(UserDto userDto) throws Exception {
+
+        //Let's check if user already registered with us
+        if(emailExists(userDto.getEmail())){
+            //TODO fix: Always throws: No value present error
+            //throw new Exception("User already exists");
+        }
+
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setFirstname(userDto.getFirstname());
+        user.setLastname(userDto.getLastname());
+        user.setPassword(userDto.getPassword()); //TODO encode password
+        user.setEmail(userDto.getEmail());
+        //user.setRoles(Arrays.asList("ROLE_USER"));
+
+        return userRepository.save(user);
+    }
+
+
+    private boolean emailExists(String email) {
+        return userRepository.findByEmail(email) != null ? true : false;
+    }
+
 }
