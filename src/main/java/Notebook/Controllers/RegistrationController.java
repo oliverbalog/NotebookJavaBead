@@ -30,7 +30,7 @@ public class RegistrationController {
             return "layout";
         }
 
-        model.addAttribute("page", "home");
+        model.addAttribute("page", "login");
         return "layout";
     }
 }

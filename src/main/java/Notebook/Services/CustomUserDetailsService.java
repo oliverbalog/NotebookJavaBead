@@ -1,17 +1,20 @@
 package Notebook.Services;
 
+import Notebook.Models.Role;
 import Notebook.Models.User;
 import Notebook.Models.UserDto;
 import Notebook.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.util.Collection;
+import java.util.*;
 
 @Service
 @Transactional
@@ -50,25 +53,22 @@ public class CustomUserDetailsService implements UserDetailsService, RegisterUse
     public User registerNewUserAccount(UserDto userDto) throws Exception {
 
         //Let's check if user already registered with us
-        if(emailExists(userDto.getEmail())){
-            //TODO fix: Always throws: No value present error
-            //throw new Exception("User already exists");
+        if(emailExists(userDto.getEmail())) {
+            throw new Exception("User already exists");
         }
 
         User user = new User();
         user.setUsername(userDto.getUsername());
         user.setFirstname(userDto.getFirstname());
         user.setLastname(userDto.getLastname());
-        user.setPassword(userDto.getPassword()); //TODO encode password
+        user.setPassword(new BCryptPasswordEncoder().encode(userDto.getPassword()));
         user.setEmail(userDto.getEmail());
-        //user.setRoles(Arrays.asList("ROLE_USER"));
 
         return userRepository.save(user);
     }
 
-
     private boolean emailExists(String email) {
-        return userRepository.findByEmail(email) != null ? true : false;
+        return userRepository.findByEmail(email).isPresent();
     }
 
 }
