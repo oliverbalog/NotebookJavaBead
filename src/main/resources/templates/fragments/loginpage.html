@@ -6,16 +6,18 @@
         You have been logged out.
     </div>
     <form th:action="@{/login}" method="post">
-        <div>
-            <label> User Name</label>
-            <input type="text" name="username"/>
+        <div class="mb-3">
+            <label for="username" class="form-label">Email address</label>
+            <input type="text" class="form-control" name="username" id="username" required>
         </div>
-        <div>
-            <label> Password</label>
-            <input type="password" name="password"/>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
         </div>
-        <div>
-            <input type="submit" value="Sign In"/>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
         </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

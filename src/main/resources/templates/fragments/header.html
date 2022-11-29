@@ -36,19 +36,17 @@
                     <a class="nav-link" href="/register">Registration</a>
                 </li>
                 <li sec:authorize="hasAuthority('USER')" class="nav-item">
-                    <a class="nav-link" href="/admin/">User</a>
+                    <a class="nav-link" href="/user">User</a>
                 </li>
                 <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
-                    <a class="nav-link" href="/admin/">Admin</a>
+                    <a class="nav-link" href="/admin">Admin</a>
                 </li>
                 <div class="mx-2 my-auto" sec:authorize="isAuthenticated()">
                     <span>Üdvözöljük <span sec:authentication="principal.username"/>!</span>
                 </div>
                 <li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item">
-<!--                TODO fix this-->
-                    <!--                    <a href="/logout">Logout</a>-->
                     <form th:action="@{/logout}" method="post">
-                        <input class="nav-link" type="submit" value="Logout"/>
+                        <button class="btn btn-sm btn-outline-primary mt-2" type="submit">Logout</button>
                     </form>
                 </li>
             </ul>

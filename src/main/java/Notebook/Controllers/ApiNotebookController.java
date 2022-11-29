@@ -2,9 +2,6 @@ package Notebook.Controllers;
 
 import Notebook.Models.Gep;
 import Notebook.Repositories.GepRepository;
-import com.sun.xml.bind.v2.model.core.ID;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,10 +45,12 @@ public class ApiNotebookController {
                     n.setVideovezerlo(notebook.getVideovezerlo());
                     n.setAr(notebook.getAr());
                     n.setDb(notebook.getDb());
+
                     return repository.save(n);
                 })
                 .orElseGet(() -> {
                     notebook.setId(id);
+
                     return repository.save(notebook);
                 });
     }

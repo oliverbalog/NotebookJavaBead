@@ -102,16 +102,15 @@ public class PagesController {
         return "layout";
     }
 
-    @GetMapping("/users")
-    public String tesztPage(Model model){
-        model.addAttribute("users", userRepository.findAll());
-        return "teszt";
+    @GetMapping("/admin")
+    public String adminPage(Model model){
+        model.addAttribute("page","admin");
+        return "layout";
     }
 
-    @GetMapping("/admin")
-    public String adminPage(Principal principal, Model model){
-
-        model.addAttribute("page","admin");
+    @GetMapping("/user")
+    public String userPage(Model model){
+        model.addAttribute("page","user");
         return "layout";
     }
 
